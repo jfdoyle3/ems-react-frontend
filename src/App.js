@@ -10,25 +10,40 @@ function App() {
       const result = await axios.get(
         'http://localhost:8080/api/employees',
       );
-      
-       setData(result.data);
+
+      setData(result.data);
     };
 
     fetchData();
   }, []);
 
   return (
-    <div>
-     <h1>EMS</h1>
-     <ul>
-       {data.map(item=> (
-         <li key={item.id}>
-          <p>{item.name}</p>
-        </li>
-       ))}
-     </ul>
+    <div className="container">
+      <h1>EMS</h1>
+      <table id="history" class="table table-condensed table-striped" >
+
+      <thead>
+      <tr>
+      <th>Name</th>
+      <th>Supervisor</th>
+      <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+
+    {data.map(item => (
+      <tr key={item.id}>
+      <td>{item.name}</td>
+      <td>{item.supervisor}</td>
+      <td>{item.role}</td>
+      </tr>
+    ))}
+      </tbody>
+      </table>
     </div>
   );
 }
 
 export default App;
+
+
